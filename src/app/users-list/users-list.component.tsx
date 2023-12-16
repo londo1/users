@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Collapse, CollapseProps, Spin } from "antd";
-import { UserDetailsComponent } from "../shared/components/user-details/user-details.component";
+import { UserDetails } from "../shared/components/user-details/user-details.component";
 import {
   usersListLoadingSelector,
   usersListSelector,
@@ -17,12 +17,7 @@ const UsersList = () => {
   const userDetailsItems: CollapseProps["items"] = users.map((user, index) => ({
     key: user.id,
     label: user.username,
-    children: (
-      <UserDetailsComponent
-        userId={user.id}
-        showSeePosts
-      ></UserDetailsComponent>
-    ),
+    children: <UserDetails userId={user.id} showSeePosts></UserDetails>,
   }));
 
   if (!users?.length && !loading) {

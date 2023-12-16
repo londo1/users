@@ -29,7 +29,7 @@ import styles from "./user-details.styles.module.css";
 import { MessageApiContext } from "../../../../App";
 import { useGetRequest } from "../../hooks/use-get-request";
 
-export const UserDetailsComponent: FC<UserDetailsComponentProps> = ({
+export const UserDetails: FC<UserDetailsComponentProps> = ({
   userId,
   showSeePosts = false,
 }) => {

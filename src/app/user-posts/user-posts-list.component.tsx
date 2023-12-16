@@ -7,7 +7,7 @@ import {
   POPULATE_USER_POSTS,
   SET_USER_POSTS_LOADING,
 } from "./user-posts.slice";
-import { UserDetailsComponent } from "../shared/components/user-details/user-details.component";
+import { UserDetails } from "../shared/components/user-details/user-details.component";
 import { DELETE } from "../shared/utilities/api-client";
 import {
   userPostsListLoading,
@@ -55,10 +55,7 @@ const UserPostsList = () => {
 
   return (
     <>
-      <UserDetailsComponent
-        showSeePosts={false}
-        userId={+id!}
-      ></UserDetailsComponent>
+      <UserDetails showSeePosts={false} userId={+id!}></UserDetails>
 
       <Divider>User Posts</Divider>
 
