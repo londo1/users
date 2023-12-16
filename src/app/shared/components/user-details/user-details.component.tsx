@@ -43,42 +43,6 @@ export const UserDetailsComponent: FC<UserDetailsComponentProps> = ({
   const [resettable, setResettable] = useState(false);
   const messageApi = useContext(MessageApiContext);
 
-  const submitUser = (payload: User) => {
-    dispatch(SET_SPECIFIC_USER_LOADING({ userId, loading: true }));
-    PUT(getUpdateUserUrl(userId), payload)
-      .then((updatedUser: User) => {
-        dispatch(UPDATE_USER(updatedUser));
-        setUser(updatedUser);
-      })
-      .catch(() => {
-        messageApi.open({
-          type: "error",
-          content: "There was an error updating the user details",
-        });
-      })
-      .finally(() => {
-        dispatch(SET_SPECIFIC_USER_LOADING({ userId, loading: false }));
-      });
-  };
-
-  const handleValidationResult = (
-    hasFormValueChanges: boolean,
-    formIsValid: boolean,
-  ) => {
-    if (!hasFormValueChanges) {
-      setSubmittable(false);
-      setResettable(false);
-      return;
-    }
-    if (formIsValid) {
-      setSubmittable(true);
-      setResettable(true);
-      return;
-    }
-    setSubmittable(false);
-    setResettable(true);
-  };
-
   useEffect(() => {
     const formValues = form.getFieldsValue();
     const propertyKeys = Object.keys(formValues) as UserKey[];
@@ -115,6 +79,42 @@ export const UserDetailsComponent: FC<UserDetailsComponentProps> = ({
         });
     }
   }, [userPromise, user, userId]);
+
+  const handleValidationResult = (
+    hasFormValueChanges: boolean,
+    formIsValid: boolean,
+  ) => {
+    if (!hasFormValueChanges) {
+      setSubmittable(false);
+      setResettable(false);
+      return;
+    }
+    if (formIsValid) {
+      setSubmittable(true);
+      setResettable(true);
+      return;
+    }
+    setSubmittable(false);
+    setResettable(true);
+  };
+
+  const submitUser = (payload: User) => {
+    dispatch(SET_SPECIFIC_USER_LOADING({ userId, loading: true }));
+    PUT(getUpdateUserUrl(userId), payload)
+      .then((updatedUser: User) => {
+        dispatch(UPDATE_USER(updatedUser));
+        setUser(updatedUser);
+      })
+      .catch(() => {
+        messageApi.open({
+          type: "error",
+          content: "There was an error updating the user details",
+        });
+      })
+      .finally(() => {
+        dispatch(SET_SPECIFIC_USER_LOADING({ userId, loading: false }));
+      });
+  };
 
   return (
     <Spin spinning={loading}>
