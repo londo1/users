@@ -20,6 +20,7 @@ export interface TableFooterProperties {
   setPage: Function;
   page: number;
   slice: any[];
+  columnsCount: number;
 }
 
 export interface Filter {
@@ -29,4 +30,15 @@ export interface Filter {
 
 export interface TableFiltersProperties {
   filterFields: Filter[];
+}
+
+export interface TableHeaderProperties<T> {
+  columns: TableColumn<T>[];
+  title: string;
+  filters: Filter[];
+}
+
+export interface TableBodyProperties<T> {
+  columns: TableColumn<T>[];
+  slice: any[];
 }

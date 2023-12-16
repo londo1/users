@@ -15,13 +15,15 @@ import {
 } from "./user-posts.selectors";
 import { UserPost } from "./user-post/user-post.component";
 import { useGetRequest } from "../shared/hooks/use-get-request";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { MessageApiContext } from "../../App";
 
 const UserPostsList = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const userPosts = useSelector(userPostsSelector(+id!));
   const loading = useSelector(userPostsListLoading());
+  const messageApi = useContext(MessageApiContext);
 
   const userPostsPromise = useGetRequest(
     `https://jsonplaceholder.typicode.com/posts?userId=${id}`,
@@ -39,9 +41,16 @@ const UserPostsList = () => {
   }, [userPostsPromise]);
 
   const handleDeletePost = (post: Post) => {
-    DELETE(`https://jsonplaceholder.typicode.com/posts/${post.id}`).then(() => {
-      dispatch(DELETE_POST(post));
-    });
+    DELETE(`https://jsonplaceholder.typicode.com/posts/${post.id}`)
+      .then(() => {
+        dispatch(DELETE_POST(post));
+      })
+      .catch(() => {
+        messageApi.open({
+          type: "error",
+          content: "There was an error deleting the user post",
+        });
+      });
   };
 
   return (

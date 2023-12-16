@@ -12,13 +12,9 @@ const calculateRange = (data: unknown[], pageSize: number) => {
 const sliceData = (data: any[], currentPage: number, pageSize: number) =>
   data.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
-export const useTable = (
-  data: any[],
-  currentPage: number,
-  pageSize: number,
-) => {
+export function useTable<T>(data: T[], currentPage: number, pageSize: number) {
   const [tableRange, setTableRange] = useState<number[]>([]);
-  const [slice, setSlice] = useState<any[]>([]);
+  const [slice, setSlice] = useState<T[]>([]);
 
   useEffect(() => {
     const range = calculateRange(data, pageSize);
@@ -29,4 +25,4 @@ export const useTable = (
   }, [data, setTableRange, currentPage, setSlice, pageSize]);
 
   return { slice, range: tableRange };
-};
+}

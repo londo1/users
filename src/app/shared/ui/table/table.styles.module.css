@@ -4,9 +4,6 @@
     justify-content: center;
     align-content: center;
 }
-.column-header {
-    text-align: left;
-}
 
 table {
     border: 1px solid #0000001a;

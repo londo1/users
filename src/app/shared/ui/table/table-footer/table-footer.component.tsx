@@ -7,6 +7,7 @@ export const TableFooter: FC<TableFooterProperties> = ({
   setPage,
   page,
   slice,
+  columnsCount,
 }) => {
   useEffect(() => {
     if (slice.length < 1 && page !== 1) {
@@ -15,18 +16,26 @@ export const TableFooter: FC<TableFooterProperties> = ({
   }, [slice, page, setPage]);
 
   return (
-    <div className={styles["footer-container"]}>
-      {range.map((pageNumber, index) => (
-        <button
-          key={index}
-          onClick={() => setPage(pageNumber)}
-          className={` ${
-            page === pageNumber ? styles.activeButton : styles.inactiveButton
-          }`}
-        >
-          {pageNumber}
-        </button>
-      ))}
-    </div>
+    <tfoot>
+      <tr>
+        <td colSpan={columnsCount}>
+          <div className={styles["footer-container"]}>
+            {range.map((pageNumber, index) => (
+              <button
+                key={index}
+                onClick={() => setPage(pageNumber)}
+                className={` ${
+                  page === pageNumber
+                    ? styles.activeButton
+                    : styles.inactiveButton
+                }`}
+              >
+                {pageNumber}
+              </button>
+            ))}
+          </div>
+        </td>
+      </tr>
+    </tfoot>
   );
 };
