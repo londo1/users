@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Collapse, Flex } from "antd";
-import { TableFiltersProperties } from "../table.model";
+import { TableFiltersProperties } from "../../table.model";
 
 export const TableFilters: FC<TableFiltersProperties> = ({ filterFields }) => {
   return (

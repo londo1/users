@@ -1,5 +1,5 @@
 import { TableHeaderProperties } from "../table.model";
-import { TableFilters } from "../table-filters/table-filters.component";
+import { TableFilters } from "./table-filters/table-filters.component";
 import React from "react";
 
 export function TableHeader<T>({
