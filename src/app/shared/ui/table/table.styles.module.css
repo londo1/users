@@ -1,0 +1,16 @@
+.table-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+.column-header {
+    text-align: left;
+}
+
+table {
+    border: 1px solid #0000001a;
+    border-radius: 10px;
+    margin-top: 2em;
+    padding: 1em;
+}

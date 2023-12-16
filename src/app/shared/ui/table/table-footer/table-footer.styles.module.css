@@ -1,0 +1,22 @@
+.footer-container{
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color:#d7d7d747;
+    border: 1px solid #0000001a;
+    margin: 1em 0.1em 0;
+    border-radius: 4px;
+}
+
+button:hover:not(.activeButton) {
+    background-color: #cee5fd;
+    transition: 0.5s;
+}
+
+.activeButton {
+    color: white;
+    background: #1677ff;
+}
+
