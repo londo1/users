@@ -12,6 +12,7 @@ export function Table<T>({
   columns,
   pageSize,
   filterFields,
+  tableId,
 }: TableProperties<T>) {
   const [page, setPage] = useState(1);
   const { slice, range } = useTable(tableElements, page, pageSize);
@@ -19,9 +20,14 @@ export function Table<T>({
   return (
     <div className={styles["table-container"]}>
       <table>
-        <TableHeader columns={columns} title={title} filters={filterFields} />
+        <TableHeader
+          tableId={tableId}
+          columns={columns}
+          title={title}
+          filters={filterFields}
+        />
 
-        <TableBody columns={columns} slice={slice} />
+        <TableBody tableId={tableId} columns={columns} slice={slice} />
 
         <TableFooter
           range={range}
@@ -29,6 +35,7 @@ export function Table<T>({
           setPage={setPage}
           page={page}
           columnsCount={columns.length}
+          tableId={tableId}
         />
       </table>
     </div>

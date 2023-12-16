@@ -108,6 +108,7 @@ const UsersTasks = () => {
           tableElements={filteredRows}
           pageSize={pageSize}
           filterFields={filterFields}
+          tableId="users-tasks"
         />
       </Spin>
     </>

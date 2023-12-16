@@ -8,6 +8,7 @@ export const TableFooter: FC<TableFooterProperties> = ({
   page,
   slice,
   columnsCount,
+  tableId,
 }) => {
   useEffect(() => {
     if (slice.length < 1 && page !== 1) {
@@ -20,9 +21,9 @@ export const TableFooter: FC<TableFooterProperties> = ({
       <tr>
         <td colSpan={columnsCount}>
           <div className={styles["footer-container"]}>
-            {range.map((pageNumber, index) => (
+            {range.map((pageNumber) => (
               <button
-                key={index}
+                key={`${tableId}-page-number-${pageNumber}`}
                 onClick={() => setPage(pageNumber)}
                 className={` ${
                   page === pageNumber

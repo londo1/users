@@ -6,6 +6,7 @@ export function TableHeader<T>({
   columns,
   title,
   filters,
+  tableId,
 }: TableHeaderProperties<T>) {
   return (
     <thead>
@@ -22,7 +23,7 @@ export function TableHeader<T>({
       <tr>
         {columns.map((column) => (
           <th
-            key={column.key}
+            key={`${tableId}-${column.key}`}
             style={{ width: column.width, textAlign: "left" }}
           >
             {column.label}

@@ -13,6 +13,7 @@ export interface TableProperties<T> {
   filterFields: any;
   tableElements: T[];
   columns: TableColumn<T>[];
+  tableId: string;
 }
 
 export interface TableFooterProperties {
@@ -21,6 +22,7 @@ export interface TableFooterProperties {
   page: number;
   slice: any[];
   columnsCount: number;
+  tableId: string;
 }
 
 export interface Filter {
@@ -36,9 +38,11 @@ export interface TableHeaderProperties<T> {
   columns: TableColumn<T>[];
   title: string;
   filters: Filter[];
+  tableId: string;
 }
 
 export interface TableBodyProperties<T> {
   columns: TableColumn<T>[];
   slice: any[];
+  tableId: string;
 }
